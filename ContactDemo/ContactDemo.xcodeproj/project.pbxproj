@@ -14,6 +14,7 @@
 		18D2A7502305736E0036C842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A74E2305736E0036C842 /* LaunchScreen.storyboard */; };
 		18D2A75B2305736E0036C842 /* ContactDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A75A2305736E0036C842 /* ContactDemoTests.swift */; };
 		18D2A7662305736E0036C842 /* ContactDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A7652305736E0036C842 /* ContactDemoUITests.swift */; };
+		18D2A777230575780036C842 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A776230575780036C842 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		18D2A7612305736E0036C842 /* ContactDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D2A7652305736E0036C842 /* ContactDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDemoUITests.swift; sourceTree = "<group>"; };
 		18D2A7672305736E0036C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D2A776230575780036C842 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		18D2A7442305736D0036C842 /* ContactDemo */ = {
 			isa = PBXGroup;
 			children = (
+				18D2A7732305754D0036C842 /* Git */,
 				18D2A7452305736D0036C842 /* AppDelegate.swift */,
 				18D2A7472305736D0036C842 /* ViewController.swift */,
 				18D2A7492305736D0036C842 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				18D2A7672305736E0036C842 /* Info.plist */,
 			);
 			path = ContactDemoUITests;
+			sourceTree = "<group>";
+		};
+		18D2A7732305754D0036C842 /* Git */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A776230575780036C842 /* .gitignore */,
+			);
+			path = Git;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D2A777230575780036C842 /* .gitignore in Resources */,
 				18D2A7502305736E0036C842 /* LaunchScreen.storyboard in Resources */,
 				18D2A74D2305736E0036C842 /* Assets.xcassets in Resources */,
 				18D2A74B2305736D0036C842 /* Main.storyboard in Resources */,
