@@ -28,6 +28,11 @@
 		18D2A79323057DF20036C842 /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78723057DF20036C842 /* SFUIText-Bold.ttf */; };
 		18D2A79423057DF20036C842 /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78823057DF20036C842 /* SFUIText-Heavy.ttf */; };
 		18D2A79523057DF20036C842 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78923057DF20036C842 /* SFUIText-Medium.ttf */; };
+		18D2A79823058E960036C842 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A79723058E960036C842 /* ColorExtension.swift */; };
+		18D2A79B230590990036C842 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A79A230590990036C842 /* Constant.swift */; };
+		18D2A79D2305A6F90036C842 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A79C2305A6F90036C842 /* CustomExtensions.swift */; };
+		18D2A7A02305A9170036C842 /* ContactListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A79F2305A9170036C842 /* ContactListingTableViewCell.swift */; };
+		18D2A7A22305A9600036C842 /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A7A12305A9600036C842 /* UIView+Anchors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +80,11 @@
 		18D2A78723057DF20036C842 /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Bold.ttf"; sourceTree = "<group>"; };
 		18D2A78823057DF20036C842 /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
 		18D2A78923057DF20036C842 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
+		18D2A79723058E960036C842 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		18D2A79A230590990036C842 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		18D2A79C2305A6F90036C842 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
+		18D2A79F2305A9170036C842 /* ContactListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListingTableViewCell.swift; sourceTree = "<group>"; };
+		18D2A7A12305A9600036C842 /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +135,8 @@
 		18D2A7442305736D0036C842 /* ContactDemo */ = {
 			isa = PBXGroup;
 			children = (
+				18D2A799230590890036C842 /* Constant */,
+				18D2A79623058E730036C842 /* Utilities */,
 				18D2A779230578830036C842 /* ViewController */,
 				18D2A7782305787A0036C842 /* View */,
 				18D2A77D23057DD00036C842 /* Fonts */,
@@ -165,6 +177,7 @@
 		18D2A7782305787A0036C842 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18D2A79E2305A8740036C842 /* ContactListTableViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +218,32 @@
 				18D2A77F23057DF10036C842 /* SFUIText-SemiboldItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		18D2A79623058E730036C842 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A79723058E960036C842 /* ColorExtension.swift */,
+				18D2A79C2305A6F90036C842 /* CustomExtensions.swift */,
+				18D2A7A12305A9600036C842 /* UIView+Anchors.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		18D2A799230590890036C842 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A79A230590990036C842 /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		18D2A79E2305A8740036C842 /* ContactListTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A79F2305A9170036C842 /* ContactListingTableViewCell.swift */,
+			);
+			path = ContactListTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,9 +390,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D2A79D2305A6F90036C842 /* CustomExtensions.swift in Sources */,
+				18D2A7A22305A9600036C842 /* UIView+Anchors.swift in Sources */,
 				18D2A7482305736D0036C842 /* ViewController.swift in Sources */,
 				18D2A77B230578C20036C842 /* ContactListController.swift in Sources */,
+				18D2A7A02305A9170036C842 /* ContactListingTableViewCell.swift in Sources */,
+				18D2A79B230590990036C842 /* Constant.swift in Sources */,
 				18D2A7462305736D0036C842 /* AppDelegate.swift in Sources */,
+				18D2A79823058E960036C842 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

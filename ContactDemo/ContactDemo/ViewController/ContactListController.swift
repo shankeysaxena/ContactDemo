@@ -13,8 +13,8 @@ class ContactListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonClicked))
-       // navigationItem.tit
-        navigationItem.title = ""
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.standardAppSemiboldFont, NSAttributedString.Key.foregroundColor: UIColor.contactListingTitleColor]
+        navigationItem.title = "Contact"
     }
 
     @objc func addButtonClicked() {
