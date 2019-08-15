@@ -15,6 +15,19 @@
 		18D2A75B2305736E0036C842 /* ContactDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A75A2305736E0036C842 /* ContactDemoTests.swift */; };
 		18D2A7662305736E0036C842 /* ContactDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A7652305736E0036C842 /* ContactDemoUITests.swift */; };
 		18D2A777230575780036C842 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A776230575780036C842 /* .gitignore */; };
+		18D2A77B230578C20036C842 /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A77A230578C20036C842 /* ContactListController.swift */; };
+		18D2A78A23057DF20036C842 /* SFUIText-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A77E23057DF10036C842 /* SFUIText-MediumItalic.ttf */; };
+		18D2A78B23057DF20036C842 /* SFUIText-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A77F23057DF10036C842 /* SFUIText-SemiboldItalic.ttf */; };
+		18D2A78C23057DF20036C842 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78023057DF10036C842 /* SFUIText-Regular.ttf */; };
+		18D2A78D23057DF20036C842 /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78123057DF10036C842 /* SFUIText-Light.ttf */; };
+		18D2A78E23057DF20036C842 /* SFUIText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78223057DF10036C842 /* SFUIText-RegularItalic.ttf */; };
+		18D2A78F23057DF20036C842 /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78323057DF10036C842 /* SFUIText-Semibold.ttf */; };
+		18D2A79023057DF20036C842 /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78423057DF10036C842 /* SFUIText-HeavyItalic.ttf */; };
+		18D2A79123057DF20036C842 /* SFUIText-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78523057DF10036C842 /* SFUIText-LightItalic.ttf */; };
+		18D2A79223057DF20036C842 /* SFUIText-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78623057DF20036C842 /* SFUIText-BoldItalic.ttf */; };
+		18D2A79323057DF20036C842 /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78723057DF20036C842 /* SFUIText-Bold.ttf */; };
+		18D2A79423057DF20036C842 /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78823057DF20036C842 /* SFUIText-Heavy.ttf */; };
+		18D2A79523057DF20036C842 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A78923057DF20036C842 /* SFUIText-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +62,19 @@
 		18D2A7652305736E0036C842 /* ContactDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDemoUITests.swift; sourceTree = "<group>"; };
 		18D2A7672305736E0036C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D2A776230575780036C842 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		18D2A77A230578C20036C842 /* ContactListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListController.swift; sourceTree = "<group>"; };
+		18D2A77E23057DF10036C842 /* SFUIText-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-MediumItalic.ttf"; sourceTree = "<group>"; };
+		18D2A77F23057DF10036C842 /* SFUIText-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		18D2A78023057DF10036C842 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
+		18D2A78123057DF10036C842 /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Light.ttf"; sourceTree = "<group>"; };
+		18D2A78223057DF10036C842 /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
+		18D2A78323057DF10036C842 /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
+		18D2A78423057DF10036C842 /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		18D2A78523057DF10036C842 /* SFUIText-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-LightItalic.ttf"; sourceTree = "<group>"; };
+		18D2A78623057DF20036C842 /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
+		18D2A78723057DF20036C842 /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Bold.ttf"; sourceTree = "<group>"; };
+		18D2A78823057DF20036C842 /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
+		18D2A78923057DF20036C842 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +125,12 @@
 		18D2A7442305736D0036C842 /* ContactDemo */ = {
 			isa = PBXGroup;
 			children = (
+				18D2A779230578830036C842 /* ViewController */,
+				18D2A7782305787A0036C842 /* View */,
+				18D2A77D23057DD00036C842 /* Fonts */,
+				18D2A77C230579480036C842 /* Resources */,
 				18D2A7732305754D0036C842 /* Git */,
-				18D2A7452305736D0036C842 /* AppDelegate.swift */,
 				18D2A7472305736D0036C842 /* ViewController.swift */,
-				18D2A7492305736D0036C842 /* Main.storyboard */,
-				18D2A74C2305736E0036C842 /* Assets.xcassets */,
-				18D2A74E2305736E0036C842 /* LaunchScreen.storyboard */,
 				18D2A7512305736E0036C842 /* Info.plist */,
 			);
 			path = ContactDemo;
@@ -134,6 +160,51 @@
 				18D2A776230575780036C842 /* .gitignore */,
 			);
 			path = Git;
+			sourceTree = "<group>";
+		};
+		18D2A7782305787A0036C842 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18D2A779230578830036C842 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A77A230578C20036C842 /* ContactListController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18D2A77C230579480036C842 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A74E2305736E0036C842 /* LaunchScreen.storyboard */,
+				18D2A74C2305736E0036C842 /* Assets.xcassets */,
+				18D2A7492305736D0036C842 /* Main.storyboard */,
+				18D2A7452305736D0036C842 /* AppDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		18D2A77D23057DD00036C842 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18D2A78723057DF20036C842 /* SFUIText-Bold.ttf */,
+				18D2A78623057DF20036C842 /* SFUIText-BoldItalic.ttf */,
+				18D2A78823057DF20036C842 /* SFUIText-Heavy.ttf */,
+				18D2A78423057DF10036C842 /* SFUIText-HeavyItalic.ttf */,
+				18D2A78123057DF10036C842 /* SFUIText-Light.ttf */,
+				18D2A78523057DF10036C842 /* SFUIText-LightItalic.ttf */,
+				18D2A78923057DF20036C842 /* SFUIText-Medium.ttf */,
+				18D2A77E23057DF10036C842 /* SFUIText-MediumItalic.ttf */,
+				18D2A78023057DF10036C842 /* SFUIText-Regular.ttf */,
+				18D2A78223057DF10036C842 /* SFUIText-RegularItalic.ttf */,
+				18D2A78323057DF10036C842 /* SFUIText-Semibold.ttf */,
+				18D2A77F23057DF10036C842 /* SFUIText-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,10 +311,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D2A78A23057DF20036C842 /* SFUIText-MediumItalic.ttf in Resources */,
 				18D2A777230575780036C842 /* .gitignore in Resources */,
 				18D2A7502305736E0036C842 /* LaunchScreen.storyboard in Resources */,
+				18D2A78B23057DF20036C842 /* SFUIText-SemiboldItalic.ttf in Resources */,
+				18D2A78E23057DF20036C842 /* SFUIText-RegularItalic.ttf in Resources */,
+				18D2A78F23057DF20036C842 /* SFUIText-Semibold.ttf in Resources */,
+				18D2A78C23057DF20036C842 /* SFUIText-Regular.ttf in Resources */,
+				18D2A79323057DF20036C842 /* SFUIText-Bold.ttf in Resources */,
+				18D2A79023057DF20036C842 /* SFUIText-HeavyItalic.ttf in Resources */,
+				18D2A79523057DF20036C842 /* SFUIText-Medium.ttf in Resources */,
 				18D2A74D2305736E0036C842 /* Assets.xcassets in Resources */,
+				18D2A79223057DF20036C842 /* SFUIText-BoldItalic.ttf in Resources */,
 				18D2A74B2305736D0036C842 /* Main.storyboard in Resources */,
+				18D2A78D23057DF20036C842 /* SFUIText-Light.ttf in Resources */,
+				18D2A79123057DF20036C842 /* SFUIText-LightItalic.ttf in Resources */,
+				18D2A79423057DF20036C842 /* SFUIText-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D2A7482305736D0036C842 /* ViewController.swift in Sources */,
+				18D2A77B230578C20036C842 /* ContactListController.swift in Sources */,
 				18D2A7462305736D0036C842 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
