@@ -16,6 +16,7 @@ extension UIColor {
     }
     
     static var contactListingTitleColor: UIColor {
+        //#4A4A4A
         return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
     }
 }

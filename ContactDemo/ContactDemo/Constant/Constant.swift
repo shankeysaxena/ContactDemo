@@ -10,4 +10,13 @@ import Foundation
 
 struct AppFontName {
     static let semibold = "SFUIText-Semibold"
+    static let bold = "SFUIText-Bold"
+}
+
+struct CellIdentifiers {
+    static let contactListCellIdentifier = "contactListCellIdentifier"
+}
+
+struct AppConstants {
+    static let contactListingCellHeight = 64
 }
