@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        let contactListController = ContactListController()
+        let contactListController = ContactListController(networkManager: NetworkManager())
         let navigationController = UINavigationController(rootViewController: contactListController)
         window?.rootViewController = navigationController
         return true

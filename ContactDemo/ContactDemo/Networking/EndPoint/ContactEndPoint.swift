@@ -1,0 +1,71 @@
+//
+//  ContactEndPoint.swift
+//  ContactDemo
+//
+//  Created by apple on 8/16/19.
+//  Copyright © 2019 Shivam Saxena. All rights reserved.
+//
+
+import Foundation
+
+
+enum NetworkEnvironment {
+    case qa
+    case production
+    case staging
+}
+
+public enum ContactAPI {
+    
+    case contactListing
+//    case recommended(id:Int)
+//    case popular(page:Int)
+//    case newMovies(page:Int)
+//    case video(id:Int)
+}
+
+extension ContactAPI: EndPointType {
+    var httpMethod: HTTPMethod {
+        switch self {
+        case .contactListing:
+            return .get
+        }
+    }
+    
+    var task: HTTPTask {
+        return .request
+    }
+    
+    var headers: HTTPHeaders? {
+        return ["key": "Content-Type", "value": "application/json", "description": ""]
+    }
+    
+
+    var environmentBaseURL: String {
+        switch NetworkManager.environment {
+        case .production: return "http://gojek-contacts-app.herokuapp.com/"
+        default: return "http://gojek-contacts-app.herokuapp.com/"
+        }
+    }
+    
+    var baseURL: URL {
+        guard let url = URL(string: environmentBaseURL) else { fatalError("baseURL could not be configured.")}
+        return url
+    }
+    
+    var path: String {
+        switch self {
+        case .contactListing:
+            return "contacts.json"
+//        case .recommended(let id):
+//            return "\(id)/recommendations"
+//        case .popular:
+//            return "popular"
+//        case .newMovies:
+//            return "now_playing"
+//        case .video(let id):
+//            return "\(id)/videos"
+        }
+
+    }
+}
