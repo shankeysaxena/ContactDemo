@@ -18,5 +18,13 @@ struct CellIdentifiers {
 }
 
 struct AppConstants {
-    static let contactListingCellHeight = 64
+    enum UITags {
+        static let CustomLoaderTag = 123
+    }
+    
+    enum CustomiseUIHeights {
+        static let contactListingCellHeight = 64
+        static let contactListingHeaderHeight = 40
+    }
+    static let errorTitle = "Error"
 }

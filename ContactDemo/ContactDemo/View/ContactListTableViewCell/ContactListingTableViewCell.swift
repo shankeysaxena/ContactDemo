@@ -24,36 +24,66 @@ class ContactListingTableViewCell: UITableViewCell {
         return label
     }()
     
-    let favouriteImageView: UIImageView = {
+    let favoriteImageView: UIImageView = {
         let favouriteImageView = UIImageView()
         favouriteImageView.image = UIImage(named: "home_favourite")
         favouriteImageView.contentMode = .scaleAspectFit
         return favouriteImageView
     }()
     
+    var favoriteViewWidthAnchor: NSLayoutConstraint?
     var isFavourite: Bool? {
         didSet {
-            
+            if let isFavourite = isFavourite {
+                favoriteViewWidthAnchor?.constant = isFavourite ? 20 : 0
+            }
         }
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(profileImageView)
-        addSubview(nameLabel)
-        addSubview(favouriteImageView)
-        profileImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0), viewSize: CGSize(width: 40, height: 40))
-        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        nameLabel.anchor(top: topAnchor, leading: profileImageView.trailingAnchor, bottom: bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
-        
-        
-        favouriteImageView.anchor(top: nil, leading: nameLabel.trailingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), viewSize: CGSize(width: 20, height: 20))
-        favouriteImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
+        backgroundColor = UIColor.cellBackgroundColor
+        selectionStyle = .none
+        configureProfileImageView()
+        configureNameLabel()
+        configureFavoriteView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = ""
+        favoriteImageView.image = UIImage(named: "home_favourite")
+    }
+    
+    func configureCellWith(_ contact: Contact?) {
+        guard let contact = contact else {return}
+        nameLabel.text = (contact.firstName ?? "") + " " + (contact.lastName ?? "")
+        isFavourite = contact.favorite
+    }
+}
+
+private extension ContactListingTableViewCell {
+    
+    func configureProfileImageView() {
+        addSubview(profileImageView)
+        profileImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0), viewSize: CGSize(width: 40, height: 40))
+        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    func configureNameLabel() {
+        addSubview(nameLabel)
+        nameLabel.anchor(top: topAnchor, leading: profileImageView.trailingAnchor, bottom: bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
+    }
+    
+    func configureFavoriteView() {
+        addSubview(favoriteImageView)
+        favoriteImageView.anchor(top: nil, leading: nameLabel.trailingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), viewSize: CGSize(width: 0, height: 20))
+        favoriteImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        favoriteViewWidthAnchor = favoriteImageView.widthAnchor.constraint(equalToConstant: 20)
+        favoriteViewWidthAnchor?.isActive = true
+    }
 }

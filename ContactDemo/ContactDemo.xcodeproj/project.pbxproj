@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		180758542306A762002DD4F9 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180758532306A762002DD4F9 /* NetworkLogger.swift */; };
+		180758592306BAA9002DD4F9 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180758582306BAA9002DD4F9 /* Contact.swift */; };
+		1807585C2306C674002DD4F9 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807585B2306C674002DD4F9 /* ContactViewModel.swift */; };
+		1807585E2306C903002DD4F9 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807585D2306C903002DD4F9 /* Loader.swift */; };
 		181AFE5223068C47002F6F79 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE5123068C47002F6F79 /* HTTPMethod.swift */; };
 		181AFE5423068CA4002F6F79 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE5323068CA4002F6F79 /* HTTPTask.swift */; };
 		181AFE5623068CD5002F6F79 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE5523068CD5002F6F79 /* Router.swift */; };
@@ -17,6 +20,7 @@
 		181AFE5F23068D96002F6F79 /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE5E23068D96002F6F79 /* EndpointType.swift */; };
 		181AFE6223068F16002F6F79 /* ContactEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE6123068F16002F6F79 /* ContactEndPoint.swift */; };
 		181AFE65230694A8002F6F79 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181AFE64230694A8002F6F79 /* NetworkManager.swift */; };
+		18CCFF2D23097D1300ED57FD /* ContactDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CCFF2C23097D1300ED57FD /* ContactDetailController.swift */; };
 		18D2A7462305736D0036C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A7452305736D0036C842 /* AppDelegate.swift */; };
 		18D2A7482305736D0036C842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2A7472305736D0036C842 /* ViewController.swift */; };
 		18D2A74B2305736D0036C842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D2A7492305736D0036C842 /* Main.storyboard */; };
@@ -64,6 +68,9 @@
 
 /* Begin PBXFileReference section */
 		180758532306A762002DD4F9 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		180758582306BAA9002DD4F9 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		1807585B2306C674002DD4F9 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		1807585D2306C903002DD4F9 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		181AFE5123068C47002F6F79 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		181AFE5323068CA4002F6F79 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		181AFE5523068CD5002F6F79 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -73,6 +80,7 @@
 		181AFE5E23068D96002F6F79 /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
 		181AFE6123068F16002F6F79 /* ContactEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEndPoint.swift; sourceTree = "<group>"; };
 		181AFE64230694A8002F6F79 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		18CCFF2C23097D1300ED57FD /* ContactDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailController.swift; sourceTree = "<group>"; };
 		18D2A7422305736D0036C842 /* ContactDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D2A7452305736D0036C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D2A7472305736D0036C842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +140,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180758552306BA79002DD4F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				180758572306BA86002DD4F9 /* ContactModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		180758562306BA7F002DD4F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1807585A2306C65D002DD4F9 /* ContactViewModel */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		180758572306BA86002DD4F9 /* ContactModel */ = {
+			isa = PBXGroup;
+			children = (
+				180758582306BAA9002DD4F9 /* Contact.swift */,
+			);
+			path = ContactModel;
+			sourceTree = "<group>";
+		};
+		1807585A2306C65D002DD4F9 /* ContactViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1807585B2306C674002DD4F9 /* ContactViewModel.swift */,
+			);
+			path = ContactViewModel;
+			sourceTree = "<group>";
+		};
 		181AFE4E23068BF3002F6F79 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +233,8 @@
 		18D2A7442305736D0036C842 /* ContactDemo */ = {
 			isa = PBXGroup;
 			children = (
+				180758562306BA7F002DD4F9 /* ViewModel */,
+				180758552306BA79002DD4F9 /* Model */,
 				18D2A7A32305CE760036C842 /* Networking */,
 				18D2A799230590890036C842 /* Constant */,
 				18D2A79623058E730036C842 /* Utilities */,
@@ -245,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				18D2A77A230578C20036C842 /* ContactListController.swift */,
+				18CCFF2C23097D1300ED57FD /* ContactDetailController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -285,6 +328,7 @@
 				18D2A79723058E960036C842 /* ColorExtension.swift */,
 				18D2A79C2305A6F90036C842 /* CustomExtensions.swift */,
 				18D2A7A12305A9600036C842 /* UIView+Anchors.swift */,
+				1807585D2306C903002DD4F9 /* Loader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -461,9 +505,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				181AFE5F23068D96002F6F79 /* EndpointType.swift in Sources */,
+				180758592306BAA9002DD4F9 /* Contact.swift in Sources */,
 				18D2A79D2305A6F90036C842 /* CustomExtensions.swift in Sources */,
 				18D2A7A22305A9600036C842 /* UIView+Anchors.swift in Sources */,
 				181AFE5D23068D77002F6F79 /* JSONParameterEncoding.swift in Sources */,
+				1807585E2306C903002DD4F9 /* Loader.swift in Sources */,
 				18D2A7482305736D0036C842 /* ViewController.swift in Sources */,
 				181AFE5623068CD5002F6F79 /* Router.swift in Sources */,
 				180758542306A762002DD4F9 /* NetworkLogger.swift in Sources */,
@@ -476,8 +522,10 @@
 				181AFE5423068CA4002F6F79 /* HTTPTask.swift in Sources */,
 				18D2A7462305736D0036C842 /* AppDelegate.swift in Sources */,
 				181AFE6223068F16002F6F79 /* ContactEndPoint.swift in Sources */,
+				1807585C2306C674002DD4F9 /* ContactViewModel.swift in Sources */,
 				181AFE5223068C47002F6F79 /* HTTPMethod.swift in Sources */,
 				18D2A79823058E960036C842 /* ColorExtension.swift in Sources */,
+				18CCFF2D23097D1300ED57FD /* ContactDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

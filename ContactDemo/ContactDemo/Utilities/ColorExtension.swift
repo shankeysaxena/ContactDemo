@@ -19,4 +19,13 @@ extension UIColor {
         //#4A4A4A
         return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
     }
+    
+    static var listingHeaderColor: UIColor {
+        //#E8E8E8
+        return UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0)
+    }
+    
+    static var cellBackgroundColor: UIColor {
+        return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+    }
 }
