@@ -19,23 +19,17 @@ class Contact: Codable {
     var profilePicUrl: String?
     var detailUrl: String?
     var profileId: Int?
+    var mobileNumber: String?
+    var emailAddress: String?
     
-    enum ContactCodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case favorite
         case firstName = "first_name"
         case lastName = "last_name"
         case profilePicUrl = "profile_pic"
         case detailUrl = "url"
         case profileId = "id"
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ContactCodingKeys.self)
-        favorite = try container.decode(Bool.self, forKey: .favorite)
-        firstName = try container.decode(String.self, forKey: .firstName)
-        lastName = try container.decode(String.self, forKey: .lastName)
-        profilePicUrl = try container.decode(String.self, forKey: .profilePicUrl)
-        detailUrl = try container.decode(String.self, forKey: .detailUrl)
-        profileId = try container.decode(Int.self, forKey: .profileId)
+        case mobileNumber = "phone_number"
+        case emailAddress = "email"
     }
 }

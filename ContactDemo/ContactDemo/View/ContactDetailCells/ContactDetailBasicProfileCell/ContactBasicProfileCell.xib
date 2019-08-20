@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactBasicProfileCellIdentifier" id="KGk-i7-Jjw" customClass="ContactBasicProfileCell" customModule="ContactDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="309.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-8c-Jnn" customClass="GradientView" customModule="ContactDemo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="309.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6a7-yl-Asq">
+                                <rect key="frame" x="85" y="20" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1KG-cc-rJQ"/>
+                                    <constraint firstAttribute="height" constant="150" id="Rna-Rb-zjp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Polly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAW-5Y-0Cy">
+                                <rect key="frame" x="20" y="178" width="280" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="U5O-6m-V7Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-rd-sYZ">
+                                <rect key="frame" x="18" y="228.5" width="284" height="61"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z1s-Hs-VgM">
+                                        <rect key="frame" x="0.0" y="0.0" width="59" height="61"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucp-EX-E1l">
+                                                <rect key="frame" x="7.5" y="0.0" width="44" height="44"/>
+                                                <state key="normal" image="message"/>
+                                                <connections>
+                                                    <action selector="userInteractiveButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oxd-NY-Vl4"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uA-M9-yKY">
+                                                <rect key="frame" x="0.0" y="44" width="59" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="soH-4l-Y1c">
+                                        <rect key="frame" x="75" y="0.0" width="59" height="61"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1L-Wl-gnQ">
+                                                <rect key="frame" x="7" y="0.0" width="45" height="44"/>
+                                                <state key="normal" image="call"/>
+                                                <connections>
+                                                    <action selector="userInteractiveButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="twg-aI-WIp"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="call" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE4-eC-91g">
+                                                <rect key="frame" x="18" y="44" width="23" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kad-Wd-1G3">
+                                        <rect key="frame" x="150" y="0.0" width="59" height="61"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="997" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxg-3Y-3Ac">
+                                                <rect key="frame" x="7" y="0.0" width="45" height="44"/>
+                                                <state key="normal" image="email"/>
+                                                <connections>
+                                                    <action selector="userInteractiveButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uiw-6h-m9H"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av6-SS-7GZ">
+                                                <rect key="frame" x="12" y="44" width="35" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UfF-Rb-Zce">
+                                        <rect key="frame" x="225" y="0.0" width="59" height="61"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quk-Ne-Xja">
+                                                <rect key="frame" x="7.5" y="0.0" width="44" height="44"/>
+                                                <state key="normal" image="favourite_unselected"/>
+                                                <connections>
+                                                    <action selector="userInteractiveButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bwc-DA-GPg"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="favourite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6g-wG-sdM">
+                                                <rect key="frame" x="0.5" y="44" width="58" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="uoS-rz-mYT"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6a7-yl-Asq" firstAttribute="centerX" secondItem="mT6-8c-Jnn" secondAttribute="centerX" id="1aq-iH-YcT"/>
+                            <constraint firstAttribute="trailing" secondItem="aAW-5Y-0Cy" secondAttribute="trailing" constant="20" id="2ez-Kh-YJV"/>
+                            <constraint firstItem="iGZ-rd-sYZ" firstAttribute="top" secondItem="aAW-5Y-0Cy" secondAttribute="bottom" constant="30" id="2ez-tI-rku"/>
+                            <constraint firstItem="6a7-yl-Asq" firstAttribute="top" secondItem="mT6-8c-Jnn" secondAttribute="top" constant="20" id="65b-21-2En"/>
+                            <constraint firstItem="aAW-5Y-0Cy" firstAttribute="leading" secondItem="mT6-8c-Jnn" secondAttribute="leading" constant="20" id="7F2-C6-z2Q"/>
+                            <constraint firstItem="aAW-5Y-0Cy" firstAttribute="top" secondItem="6a7-yl-Asq" secondAttribute="bottom" constant="8" id="91h-vO-dUp"/>
+                            <constraint firstItem="iGZ-rd-sYZ" firstAttribute="centerX" secondItem="mT6-8c-Jnn" secondAttribute="centerX" id="SfC-vm-VO6"/>
+                            <constraint firstAttribute="bottom" secondItem="iGZ-rd-sYZ" secondAttribute="bottom" constant="20" id="UGX-za-dCx"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" red="0.31372549019607843" green="0.8901960784313725" blue="0.76078431372549016" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mT6-8c-Jnn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="T9r-DV-L8H"/>
+                    <constraint firstItem="mT6-8c-Jnn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cIT-y2-VBm"/>
+                    <constraint firstAttribute="trailing" secondItem="mT6-8c-Jnn" secondAttribute="trailing" id="smm-g7-eas"/>
+                    <constraint firstAttribute="bottom" secondItem="mT6-8c-Jnn" secondAttribute="bottom" id="wAm-C0-X3B"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="favouriteButton" destination="quk-Ne-Xja" id="jHp-Pz-m84"/>
+                <outlet property="nameLabel" destination="aAW-5Y-0Cy" id="7TG-hr-rke"/>
+                <outlet property="nameLabelHeightConstraint" destination="U5O-6m-V7Y" id="XE4-cO-h94"/>
+                <outlet property="profileImageView" destination="6a7-yl-Asq" id="bZi-J8-sdh"/>
+                <outlet property="stackViewHeightConstraint" destination="uoS-rz-mYT" id="UGh-4X-lgs"/>
+            </connections>
+            <point key="canvasLocation" x="-184" y="33"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="call" width="45" height="44"/>
+        <image name="email" width="45" height="44"/>
+        <image name="favourite_unselected" width="44" height="44"/>
+        <image name="message" width="44" height="44"/>
+    </resources>
+</document>

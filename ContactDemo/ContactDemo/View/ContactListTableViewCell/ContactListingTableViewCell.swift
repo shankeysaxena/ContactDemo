@@ -10,8 +10,8 @@ import UIKit
 
 class ContactListingTableViewCell: UITableViewCell {
     
-    let profileImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "placeholder"))
+    let profileImageView: AsyncImageView = {
+        let imageView = AsyncImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -42,7 +42,7 @@ class ContactListingTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.cellBackgroundColor
+        backgroundColor = UIColor.defaultBackgroundColor
         selectionStyle = .none
         configureProfileImageView()
         configureNameLabel()
@@ -63,6 +63,7 @@ class ContactListingTableViewCell: UITableViewCell {
         guard let contact = contact else {return}
         nameLabel.text = (contact.firstName ?? "") + " " + (contact.lastName ?? "")
         isFavourite = contact.favorite
+        profileImageView.imageFromServerURL(contact.profilePicUrl, placeHolder: UIImage(named: "placeholder"))
     }
 }
 
@@ -72,6 +73,8 @@ private extension ContactListingTableViewCell {
         addSubview(profileImageView)
         profileImageView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0), viewSize: CGSize(width: 40, height: 40))
         profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.layer.masksToBounds = true
     }
     
     func configureNameLabel() {

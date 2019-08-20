@@ -14,9 +14,8 @@ struct Section {
     let contactNames: [Contact]?
 }
 
-final class ContactViewModel: NSObject {
+final class ContactViewModel {
     
-    //private(set) var contactList: [Contact] = [Contact]()
     private var sections: [Section]?
     
     required init(contactList: [Contact]?) {

@@ -25,7 +25,7 @@ extension UIColor {
         return UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0)
     }
     
-    static var cellBackgroundColor: UIColor {
+    static var defaultBackgroundColor: UIColor {
         return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
     }
 }

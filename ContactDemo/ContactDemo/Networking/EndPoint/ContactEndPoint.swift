@@ -18,18 +18,36 @@ enum NetworkEnvironment {
 public enum ContactAPI {
     
     case contactListing
+    case contactDetail(id: Int)
 //    case recommended(id:Int)
 //    case popular(page:Int)
 //    case newMovies(page:Int)
 //    case video(id:Int)
 }
 
+extension ContactAPI: Equatable {
+    
+    public static func ==(lhs: ContactAPI, rhs: ContactAPI) -> Bool {
+        switch (lhs, rhs) {
+        case (let .contactDetail(a1), let .contactDetail(a2)):
+            return a1 == a2
+        case (.contactListing,.contactListing):
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 extension ContactAPI: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
+        case .contactDetail:
+            fallthrough
         case .contactListing:
             return .get
         }
+        
     }
     
     var task: HTTPTask {
@@ -55,14 +73,12 @@ extension ContactAPI: EndPointType {
     
     var path: String {
         switch self {
+        case .contactDetail(let id):
+            return "contacts/\(id).json"
         case .contactListing:
             return "contacts.json"
 //        case .recommended(let id):
 //            return "\(id)/recommendations"
-//        case .popular:
-//            return "popular"
-//        case .newMovies:
-//            return "now_playing"
 //        case .video(let id):
 //            return "\(id)/videos"
         }

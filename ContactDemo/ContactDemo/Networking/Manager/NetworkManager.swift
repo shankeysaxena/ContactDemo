@@ -28,8 +28,8 @@ struct NetworkManager {
     static let MovieAPIKey = ""
     let router = Router<ContactAPI>()
     
-    func getContactListWith(completion: @escaping (_ movie: [Contact]?,_ error: String?)->()) {
-        router.request(.contactListing) { data, response, error in
+    func getContactListWith(type: ContactAPI, completion: @escaping (_ contact: [Contact]?, _ error: String?) -> ()) {
+        router.request(type) {[type] data, response, error in
             if error != nil {
                 completion(nil, "Please check your network connection.")
             }
@@ -39,27 +39,43 @@ struct NetworkManager {
                 switch result {
                 case .success:
                     guard let responseData = data else {
-                        completion(nil, NetworkResponse.noData.rawValue)
+                        DispatchQueue.main.async {
+                            completion(nil, NetworkResponse.noData.rawValue)
+                        }
                         return
                     }
                     do {
                         print(responseData)
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
-                        let contactList = try JSONDecoder().decode([Contact].self, from: responseData)
-                        completion(contactList, nil)
+                        if type == .contactListing  {
+                            let contactList = try JSONDecoder().decode([Contact].self, from: responseData)
+                            DispatchQueue.main.async {
+                                completion(contactList, nil)
+                            }
+                        } else {
+                            let contact = try JSONDecoder().decode(Contact.self, from: responseData)
+                            DispatchQueue.main.async {
+                                completion([contact], nil)
+                            }
+                        }
                     }catch {
                         print(error)
-                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                        DispatchQueue.main.async {
+                            completion(nil, NetworkResponse.unableToDecode.rawValue)
+                        }
                     }
                 case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
+                    DispatchQueue.main.async {
+                        completion(nil, networkFailureError)
+                    }
                     print(networkFailureError)
                 }
             }
 
         }
     }
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         switch response.statusCode {
         case 200...299: return .success

@@ -44,11 +44,10 @@ public class Loader: UIView {
     
     func isSmallInd(small: Bool) {
         indicator.style = small ? .white : .whiteLarge
-        indicator.color = #colorLiteral(red: 0, green: 0.1722356081, blue: 0.3062787056, alpha: 1)
+        indicator.color = UIColor.themeColor
     }
     
     // MARK: - Class methods
-    
     class func addLoaderOn(_ aView: UIView, gradient: Bool = false, small: Bool = false) {
         Loader.removeLoaderFrom(aView)
         DispatchQueue.main.async {

@@ -28,14 +28,14 @@ class ContactListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.cellBackgroundColor
+        view.backgroundColor = UIColor.defaultBackgroundColor
         configureNavigationItem()
         configureTableView()
         fetchContactList()
     }
 
     @objc func addButtonClicked() {
-       print("Add button Clicked")
+        pushDetailControllerFor(type: .newContact, contactModel: nil)
     }
 
 }
@@ -67,6 +67,13 @@ extension ContactListController {
 
 //MARK:- Tableview delegate methods
 extension ContactListController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let contactModel = viewModel?.itemAtIndexPath(indexPath) {
+            pushDetailControllerFor(type: .contactDetail, contactModel: contactModel)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(AppConstants.CustomiseUIHeights.contactListingHeaderHeight)
     }
@@ -85,6 +92,12 @@ extension ContactListController {
 
 //MARK:- Private Methods
 private extension ContactListController {
+    
+    func pushDetailControllerFor(type: ContactDetailMode, contactModel: Contact?) {
+        let controller = ContactDetailController(contactMode: type, contactModel: contactModel, networkManager: networkManager)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func configureNavigationItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonClicked))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.standardAppSemiboldFont, NSAttributedString.Key.foregroundColor: UIColor.contactListingTitleColor]
@@ -99,7 +112,7 @@ private extension ContactListController {
     
     func fetchContactList() {
         Loader.addLoaderOn(view)
-        networkManager.getContactListWith { [weak self] (contactList, errorString) in
+        networkManager.getContactListWith(type: .contactListing) { [weak self] (contactList, errorString) in
             Loader.removeLoaderFrom(self?.view)
             if let errorString = errorString {
                 self?.showAlert(errorString)
