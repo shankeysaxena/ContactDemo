@@ -16,13 +16,10 @@ enum NetworkEnvironment {
 }
 
 public enum ContactAPI {
-    
     case contactListing
     case contactDetail(id: Int)
-//    case recommended(id:Int)
-//    case popular(page:Int)
-//    case newMovies(page:Int)
-//    case video(id:Int)
+    case newContact(contact: Contact)
+    case updateContact(id: Int, contact: Contact)
 }
 
 extension ContactAPI: Equatable {
@@ -46,12 +43,27 @@ extension ContactAPI: EndPointType {
             fallthrough
         case .contactListing:
             return .get
+        case .newContact:
+            return .post
+        case .updateContact:
+            return .put
         }
         
     }
     
     var task: HTTPTask {
-        return .request
+        switch self {
+        case .contactDetail:
+            fallthrough
+        case .contactListing:
+            return .request
+        case .newContact(let contact):
+            let contactParameters = ["first_name": (contact.firstName ?? ""), "last_name": (contact.lastName ?? ""), "email": (contact.emailAddress ?? ""), "phone_number": (contact.mobileNumber ?? ""), "favorite": (contact.favorite ?? false)] as [String : Any]
+            return .requestParameters(bodyParameters: contactParameters, bodyEncoding: .jsonEncoding, urlParameters: nil)
+        case .updateContact( _, let contact):
+            let contactParameters = ["first_name": (contact.firstName ?? ""), "last_name": (contact.lastName ?? ""), "email": (contact.emailAddress ?? ""), "phone_number": (contact.mobileNumber ?? ""), "favorite": (contact.favorite ?? false)] as [String : Any]
+            return .requestParameters(bodyParameters: contactParameters, bodyEncoding: .jsonEncoding, urlParameters: nil)
+        }
     }
     
     var headers: HTTPHeaders? {
@@ -75,12 +87,12 @@ extension ContactAPI: EndPointType {
         switch self {
         case .contactDetail(let id):
             return "contacts/\(id).json"
+        case .newContact:
+            fallthrough
         case .contactListing:
             return "contacts.json"
-//        case .recommended(let id):
-//            return "\(id)/recommendations"
-//        case .video(let id):
-//            return "\(id)/videos"
+        case .updateContact(let id, _):
+            return "contacts/\(id).json"
         }
 
     }

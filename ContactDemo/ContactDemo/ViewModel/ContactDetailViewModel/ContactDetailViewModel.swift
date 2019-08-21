@@ -11,10 +11,9 @@ import UIKit
 
 final class ContactDetailViewModel {
     
-    private var contactModel: Contact?
-    
+    private(set) var contactModel: Contact?
     private var updateUI: (() -> ())
-    
+    var userInteractiveButtonCallback: ((AppConstants.ProfileButtonTags) -> ())?
     private(set) var isInEditMode: Bool = false {
         didSet {
             if contactViewModeType == .newContact { return }
@@ -38,7 +37,7 @@ final class ContactDetailViewModel {
     private(set) var contactViewModeType: ContactDetailMode
     private var profileItems = [ProfileViewModelItem]()
     
-    required init(model: Contact?, contactViewModeType: ContactDetailMode, updationBlock: @escaping (() -> ())) {
+    required init(model: Contact?, contactViewModeType: ContactDetailMode, updationBlock: @escaping (() -> ())){
         self.contactModel = model
         self.contactViewModeType = contactViewModeType
         self.updateUI = updationBlock
@@ -59,7 +58,7 @@ private extension ContactDetailViewModel {
     
     func configureProfileItemsForDetailMode() {
         let name = (contactModel?.firstName ?? "") + " " + (contactModel?.lastName ?? "")
-        let profileNameAndPictureItem = ProfileNameAndPictureItem(name: name, profileImageURL: contactModel?.profilePicUrl)
+        let profileNameAndPictureItem = ProfileNameAndPictureItem(name: name, profileImageURL: contactModel?.profilePicUrl, isFavorite: contactModel?.favorite)
         profileItems.append(profileNameAndPictureItem)
         if isInEditMode == true {
             let firstNameItem = ProfileFirstNameItem(firstName: contactModel?.firstName)
@@ -88,12 +87,33 @@ extension ContactDetailViewModel {
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.contactBasicProfileCellIdentifier, for: indexPath) as? ContactBasicProfileCell {
-                cell.configureCellFor(item: itemAtIndexPath(indexPath), contactMode: contactViewModeType)
+                cell.configureCellFor(item: itemAtIndexPath(indexPath), contactMode: contactViewModeType) { [weak self] (isButtonTapped, buttonType) in
+                    switch buttonType {
+                    case .favouriteButtonTag:
+                        self?.contactModel?.favorite = isButtonTapped
+                        fallthrough
+                    default:
+                        self?.userInteractiveButtonCallback?(buttonType)
+                    }
+                }
                 return cell
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.contactDetailInfoCellIdentifier, for: indexPath) as? ContactDetailInfoCell {
-                cell.configureCellWith(item: itemAtIndexPath(indexPath), isInEditMode: isInEditMode)
+                cell.configureCellWith(item: itemAtIndexPath(indexPath), isInEditMode: isInEditMode) { [weak self] (changedValue, itemType) in
+                    switch itemType {
+                    case .emailAddress:
+                        self?.contactModel?.emailAddress = changedValue
+                    case .lastName:
+                        self?.contactModel?.lastName = changedValue
+                    case .firstName:
+                        self?.contactModel?.firstName = changedValue
+                    case .mobileNumber:
+                        self?.contactModel?.mobileNumber = changedValue
+                    case .nameAndPicture:
+                        return
+                    }
+                }
                 return cell
             }
         }

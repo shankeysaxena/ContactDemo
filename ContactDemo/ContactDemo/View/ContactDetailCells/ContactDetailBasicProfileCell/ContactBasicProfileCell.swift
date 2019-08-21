@@ -14,7 +14,16 @@ class ContactBasicProfileCell: ContactDetailBaseCell {
     @IBOutlet weak var nameLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: AsyncImageView!
+    
+    private var isFavorite: Bool = false {
+        didSet {
+            let imageName = isFavorite ? "favourite_selected" : "favourite_unselected"
+            favouriteButton.setImage(UIImage(named: imageName), for: .normal)
+        }
+    }
+    
+    private var editingClosure: ((Bool, AppConstants.ProfileButtonTags) -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,25 +34,35 @@ class ContactBasicProfileCell: ContactDetailBaseCell {
         profileImageView.layer.borderColor = UIColor.white.cgColor
     }
 
-    func configureCellFor(item: ProfileViewModelItem?, contactMode: ContactDetailMode) {
+    func configureCellFor(item: ProfileViewModelItem?, contactMode: ContactDetailMode, with editingClosure: @escaping ((Bool?, AppConstants.ProfileButtonTags) -> ())) {
         guard let item = item as? ProfileNameAndPictureItem else {
             return
         }
         stackViewHeightConstraint.constant = (contactMode == .newContact) ? 0 : 61
         nameLabelHeightConstraint.constant = (contactMode == .newContact) ? 0 : 20.5
+        self.editingClosure = editingClosure
         self.item = item
+        self.isFavorite = item.isFavorite ?? false
         nameLabel.text = item.personName
+        
+        profileImageView.imageFromServerURL(item.profileImageURL, placeHolder: UIImage(named: "placeholder"))
     }
     
     @IBAction func userInteractiveButtonTapped(_ sender: UIButton) {
+        
         switch sender.tag {
-        case AppConstants.UITags.callButtonTag:
+        case AppConstants.ProfileButtonTags.callButtonTag.rawValue:
+            editingClosure?(true, AppConstants.ProfileButtonTags.callButtonTag)
             break
-        case AppConstants.UITags.emailButtonTag:
+        case AppConstants.ProfileButtonTags.emailButtonTag.rawValue:
+            editingClosure?(true, AppConstants.ProfileButtonTags.emailButtonTag)
             break
-        case AppConstants.UITags.messageButtonTag:
+        case AppConstants.ProfileButtonTags.messageButtonTag.rawValue:
+            editingClosure?(true, AppConstants.ProfileButtonTags.messageButtonTag)
             break
-        case AppConstants.UITags.favouriteButtonTag:
+        case AppConstants.ProfileButtonTags.favouriteButtonTag.rawValue:
+            isFavorite = !isFavorite
+            editingClosure?(true, AppConstants.ProfileButtonTags.favouriteButtonTag)
             break
         default:
             return

@@ -30,7 +30,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-8c-Jnn" customClass="GradientView" customModule="ContactDemo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="309.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6a7-yl-Asq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6a7-yl-Asq" customClass="AsyncImageView" customModule="ContactDemo" customModuleProvider="target">
                                 <rect key="frame" x="85" y="20" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="1KG-cc-rJQ"/>
@@ -161,7 +161,7 @@
                 <outlet property="favouriteButton" destination="quk-Ne-Xja" id="jHp-Pz-m84"/>
                 <outlet property="nameLabel" destination="aAW-5Y-0Cy" id="7TG-hr-rke"/>
                 <outlet property="nameLabelHeightConstraint" destination="U5O-6m-V7Y" id="XE4-cO-h94"/>
-                <outlet property="profileImageView" destination="6a7-yl-Asq" id="bZi-J8-sdh"/>
+                <outlet property="profileImageView" destination="6a7-yl-Asq" id="yAO-mo-Azg"/>
                 <outlet property="stackViewHeightConstraint" destination="uoS-rz-mYT" id="UGh-4X-lgs"/>
             </connections>
             <point key="canvasLocation" x="-184" y="33"/>

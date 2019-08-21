@@ -8,11 +8,7 @@
 
 import Foundation
 
-//struct ContactResponse {
-//    let contactList
-//}
-
-class Contact: Codable {
+public class Contact: Codable {
     var favorite: Bool?
     var firstName: String?
     var lastName: String?
@@ -33,3 +29,11 @@ class Contact: Codable {
         case emailAddress = "email"
     }
 }
+
+//extension Contact: Equatable {
+//    public static func ==(lhs: Contact?, rhs: Contact?) -> Bool {
+//
+//        guard
+//
+//    }
+//}

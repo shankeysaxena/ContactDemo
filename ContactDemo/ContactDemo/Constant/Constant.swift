@@ -21,11 +21,15 @@ struct CellIdentifiers {
 
 struct AppConstants {
     enum UITags {
-        static let CustomLoaderTag = 123
-        static let messageButtonTag = 999
-        static let callButtonTag = 998
-        static let emailButtonTag = 997
-        static let favouriteButtonTag = 996
+        static let CustomLoaderTag = 995
+        static let ShimmeringLoaderTag = 994
+    }
+    
+    enum ProfileButtonTags: Int {
+        case messageButtonTag = 999
+        case callButtonTag = 998
+        case emailButtonTag = 997
+        case favouriteButtonTag = 996
     }
     
     enum CustomiseUIHeights {
@@ -35,4 +39,5 @@ struct AppConstants {
         static let contactDetailCellHeight = 56
     }
     static let errorTitle = "Error"
+    static let contactSuccessfullyPostedMessage = "Contact has been posted successfully"
 }

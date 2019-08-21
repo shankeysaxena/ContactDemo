@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 enum ContactDetailMode {
     case newContact
@@ -15,8 +16,9 @@ enum ContactDetailMode {
 
 class ContactDetailController: UITableViewController {
 
-    private var contactMode: ContactDetailMode!
+    fileprivate var contactMode: ContactDetailMode!
     fileprivate var networkManager: NetworkManager!
+    private var tapGesture: UITapGestureRecognizer!
     private var contactModel: Contact?
     private var viewModel: ContactDetailViewModel? {
         didSet {
@@ -33,7 +35,7 @@ class ContactDetailController: UITableViewController {
         button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    
     init(contactMode: ContactDetailMode, contactModel: Contact?, networkManager: NetworkManager) {
         super.init(nibName: nil, bundle: nil)
         self.contactMode = contactMode
@@ -48,12 +50,19 @@ class ContactDetailController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.defaultBackgroundColor
-        configureDoneButton()
+        configureBottomButtons()
         if contactMode == .contactDetail {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonClicked))
         }
         configureTableView()
         fetchDetailData()
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    deinit {
+        view.removeGestureRecognizer(tapGesture)
     }
 }
 
@@ -68,21 +77,36 @@ extension ContactDetailController {
     }
 }
 
-//MARK:- Tableview delegate methods
-extension ContactDetailController {
-    
-}
-
 //Private Methods
 private extension ContactDetailController {
     
-    func configureDoneButton() {
+    @objc func handleTapGesture() {
+        view.endEditing(true)
+    }
+    
+    func configureTableView() {
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        tableView.register(UINib.init(nibName: "ContactBasicProfileCell", bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.contactBasicProfileCellIdentifier)
+        tableView.register(UINib.init(nibName: "ContactDetailInfoCell", bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.contactDetailInfoCellIdentifier)
+    }
+    
+    func configureBottomButtons() {
         view.addSubview(doneButton)
         doneButton.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: .zero, viewSize: CGSize(width: 0, height: 50))
     }
     
     @objc func doneButtonTapped() {
-        print("Done button tapped")
+        view.endEditing(true)
+        guard let contactModel = contactModel, let _ = contactModel.firstName, let _ = contactModel.lastName else {
+            self.showAlert("Please enter atleast first and last name to add contact")
+            return
+        }
+        networkManager.addNewContactWith(contactModel: contactModel) { [weak self] responseString in
+            self?.showAlertView(nil, message: responseString, cancelButtonTitle: "OK", handler: { (handler) in
+                self?.navigationController?.popViewController(animated: true)
+            })
+        }
     }
     
     @objc func editButtonClicked() {
@@ -98,11 +122,6 @@ private extension ContactDetailController {
             viewModel?.editOptionChanged()
             return
         }
-        //If Email Address and MobileNumber are already fetched then don't fetch it again
-//        if contactModel?.emailAddress != nil && contactModel?.mobileNumber != nil {
-//            viewModel = ContactDetailViewModel(model: contactModel, contactViewModeType: contactMode)
-//            return
-//        }
         Loader.addLoaderOn(view)
         networkManager.getContactListWith(type: .contactDetail(id: contactModel?.profileId ?? 0)) { [weak self] (contactList, errorString) in
             guard let strongSelf = self else {
@@ -120,12 +139,76 @@ private extension ContactDetailController {
             strongSelf.viewModel = ContactDetailViewModel(model: strongSelf.contactModel, contactViewModeType: strongSelf.contactMode, updationBlock: { [weak strongSelf] in
                 strongSelf?.tableView.reloadData()
             })
+            strongSelf.viewModel?.userInteractiveButtonCallback = { [weak strongSelf] buttonType in
+                strongSelf?.handleUserInteractionFor(buttonType: buttonType)
+            }
         }
     }
     
-    func configureTableView() {
-        tableView.separatorStyle = .none
-        tableView.register(UINib.init(nibName: "ContactBasicProfileCell", bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.contactBasicProfileCellIdentifier)
-        tableView.register(UINib.init(nibName: "ContactDetailInfoCell", bundle: Bundle.main), forCellReuseIdentifier: CellIdentifiers.contactDetailInfoCellIdentifier)
+    func handleUserInteractionFor(buttonType: AppConstants.ProfileButtonTags) {
+        switch buttonType {
+        case .callButtonTag:
+            guard let mobileNumber = contactModel?.mobileNumber else { return }
+            dialNumber(number: mobileNumber)
+        case .messageButtonTag:
+            handleMessageTap()
+        case .emailButtonTag:
+            handleMailButtonTapped()
+        case .favouriteButtonTag:
+            break
+        }
+    }
+    
+    //MARK:- User Interaction button action
+    func handleMessageTap() {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Message Body"
+            controller.messageComposeDelegate = self
+            present(controller, animated: true, completion: nil)
+        } else {
+            showAlert("Can't send message")
+        }
+    }
+    
+    func dialNumber(number : String) {
+        if let url = URL(string: "tel://\(number)"),
+            UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        } else {
+            showAlert("Can't dial a number")
+        }
+    }
+    
+    func handleMailButtonTapped() {
+        let mailComposerController = configureMailComposer()
+        if MFMailComposeViewController.canSendMail() {
+            present(mailComposerController, animated: true, completion: nil)
+        } else {
+            showAlert("Can't send mail")
+        }
+    }
+    
+    func configureMailComposer() -> MFMailComposeViewController{
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setSubject("Greeting of the day")
+        return mailComposeVC
+    }
+}
+
+extension ContactDetailController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ContactDetailController: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        dismiss(animated: true, completion: nil)
     }
 }

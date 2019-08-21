@@ -37,6 +37,7 @@ class ProfileNameAndPictureItem: ProfileViewModelItem {
     
     var personName: String?
     var profileImageURL: String?
+    var isFavorite: Bool?
     var itemType: ProfileViewModelItemType {
         return .nameAndPicture
     }
@@ -46,9 +47,10 @@ class ProfileNameAndPictureItem: ProfileViewModelItem {
         self.profileImageURL = nil
     }
     
-    init(name: String?, profileImageURL: String?) {
+    init(name: String?, profileImageURL: String?, isFavorite: Bool?) {
         self.personName = name
         self.profileImageURL = profileImageURL
+        self.isFavorite = isFavorite
     }
 }
 

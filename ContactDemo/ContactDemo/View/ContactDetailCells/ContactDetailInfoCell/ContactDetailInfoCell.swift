@@ -13,6 +13,8 @@ class ContactDetailInfoCell: ContactDetailBaseCell {
     @IBOutlet weak var infoTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     
+    private var editingClosure: ((String?, ProfileViewModelItemType) -> ())?
+    
     override var item: ProfileViewModelItem? {
         didSet {
             titleLabel.text = self.item?.itemTitle
@@ -22,12 +24,20 @@ class ContactDetailInfoCell: ContactDetailBaseCell {
         super.awakeFromNib()
         // Initialization code
         infoTextField.tintColor = UIColor.themeColor
+        infoTextField.delegate = self
     }
     
-    func configureCellWith(item: ProfileViewModelItem?, isInEditMode: Bool) {
+    func configureCellWith(item: ProfileViewModelItem?, isInEditMode: Bool, with editingClosure: @escaping ((String?, ProfileViewModelItemType) -> ())){
         self.item = item
         configureTextField()
         infoTextField.isUserInteractionEnabled = isInEditMode
+        self.editingClosure = editingClosure
+    }
+}
+
+extension ContactDetailInfoCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        editingClosure?(textField.text, item?.itemType ?? .nameAndPicture)
     }
 }
 
