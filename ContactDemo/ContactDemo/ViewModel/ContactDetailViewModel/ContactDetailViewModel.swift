@@ -104,7 +104,7 @@ extension ContactDetailViewModel {
             if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.contactBasicProfileCellIdentifier, for: indexPath) as? ContactBasicProfileCell {
                 //Initializing cell with handler for handling events change
                 //if there are any, in cells
-                cell.configureCellFor(item: itemAtIndexPath(indexPath), contactMode: contactViewModeType) { [weak self] (isButtonTapped, buttonType) in
+                cell.configureCellFor(item: itemAtIndexPath(indexPath), contactMode: contactViewModeType, isInEditMode: isInEditMode) { [weak self] (isButtonTapped, buttonType) in
                     switch buttonType {
                     case .favouriteButtonTag:
                         self?.contactModel?.favorite = isButtonTapped

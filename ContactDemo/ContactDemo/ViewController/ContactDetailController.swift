@@ -52,6 +52,7 @@ class ContactDetailController: UITableViewController {
         view.backgroundColor = UIColor.defaultBackgroundColor
         configureBottomButtons()
         if contactMode == .contactDetail {
+            doneButton.isHidden = true
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonClicked))
         }
         configureTableView()
@@ -103,6 +104,7 @@ private extension ContactDetailController {
     
     @objc func editButtonClicked() {
         viewModel?.editOptionChanged()
+        (viewModel?.isInEditMode ?? false) ? doneButton.fadeIn() : doneButton.fadeOut()
         navigationItem.rightBarButtonItem?.title = (viewModel?.isInEditMode ?? false) ? "Cancel" : "Edit"
     }
     

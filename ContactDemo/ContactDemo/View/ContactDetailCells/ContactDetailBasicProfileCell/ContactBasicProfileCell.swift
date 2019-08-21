@@ -34,12 +34,12 @@ class ContactBasicProfileCell: ContactDetailBaseCell {
         profileImageView.layer.borderColor = UIColor.white.cgColor
     }
 
-    func configureCellFor(item: ProfileViewModelItem?, contactMode: ContactDetailMode, with editingClosure: @escaping ((Bool?, AppConstants.ProfileButtonTags) -> ())) {
+    func configureCellFor(item: ProfileViewModelItem?, contactMode: ContactDetailMode, isInEditMode: Bool, with editingClosure: @escaping ((Bool?, AppConstants.ProfileButtonTags) -> ())) {
         guard let item = item as? ProfileNameAndPictureItem else {
             return
         }
-        stackViewHeightConstraint.constant = (contactMode == .newContact) ? 0 : 61
-        nameLabelHeightConstraint.constant = (contactMode == .newContact) ? 0 : 20.5
+        stackViewHeightConstraint.constant = (contactMode == .newContact) ? 0 : (isInEditMode ? 0 : 61)
+        nameLabelHeightConstraint.constant = (contactMode == .newContact) ? 0 : (isInEditMode ? 0 : 20.5)
         self.editingClosure = editingClosure
         self.item = item
         self.isFavorite = item.isFavorite ?? false
