@@ -42,6 +42,7 @@ extension ContactDetailInfoCell: UITextFieldDelegate {
 }
 
 private extension ContactDetailInfoCell {
+
     func configureTextField() {
         guard let item = item else {
             return
@@ -52,18 +53,22 @@ private extension ContactDetailInfoCell {
             if let mobileItem = item as? ProfileMobileNumberItem, let mobileNumber = mobileItem.mobileNumber {
                 text = mobileNumber
             }
+            infoTextField.keyboardType = .numberPad
         case .emailAddress:
             if let emailItem = item as? ProfileEmailAddressItem, let email = emailItem.emailAddress {
                 text = email
             }
+            infoTextField.keyboardType = .emailAddress
         case .firstName:
             if let firstNameItem = item as? ProfileFirstNameItem, let firstName = firstNameItem.firstName {
                 text = firstName
             }
+            infoTextField.keyboardType = .default
         case .lastName:
             if let lastNameItem = item as? ProfileLastNameItem, let lastName = lastNameItem.lastName {
                 text = lastName
             }
+            infoTextField.keyboardType = .default
         default:
             break
         }

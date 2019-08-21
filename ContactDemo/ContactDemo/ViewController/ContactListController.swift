@@ -13,10 +13,9 @@ class ContactListController: UITableViewController {
     private var networkManager: NetworkManager!
     private var viewModel: ContactViewModel? {
         didSet {
-            DispatchQueue.main.async {self.tableView.reloadData()}
+            DispatchQueue.main.async { self.tableView.reloadData() }
         }
     }
-    private var shimmeringView: ShimmeringView?
     
     init(networkManager: NetworkManager) {
         super.init(nibName: nil, bundle: nil)
@@ -29,11 +28,6 @@ class ContactListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        shimmeringView = ShimmeringView(frame: view.bounds)
-//        if let shimmeringView = shimmeringView {
-//            view.addSubview(shimmeringView)
-//            shimmeringView.createAnimation(view, with: "Loading")
-//        }
         view.backgroundColor = UIColor.defaultBackgroundColor
         configureNavigationItem()
         configureTableView()

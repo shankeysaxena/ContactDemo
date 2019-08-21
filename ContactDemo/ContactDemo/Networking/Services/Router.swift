@@ -10,20 +10,28 @@ import Foundation
 
 public typealias NetworkRouterCompletion = (_ data: Data?,_ response: URLResponse?,_ error: Error?)->()
 
+//Protocol for network router for routing the requests
 protocol NetworkRouter: class {
     associatedtype EndPoint: EndPointType
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
     func cancel()
 }
 
+//Router class for routing the requests
 class Router<EndPoint: EndPointType>: NetworkRouter {
     private var task: URLSessionTask?
     
+    /// Method for requesting/posting the data on a server
+    /// - Parameters:
+    ///   - route: Endpoints enums
+    ///   - completion: completion handler to handle response
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
         do {
+            //Build request
             let request = try self.buildRequest(from: route)
-            NetworkLogger.log(request: request)
+            //Uncomment below network logger for logging request data
+//            NetworkLogger.log(request: request)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
                 completion(data, response, error)
             })
@@ -38,13 +46,14 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     }
     
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
-        
+        //Building requests
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)
         
         request.httpMethod = route.httpMethod.rawValue
         do {
+            //Configuring request paramters and url parameters according the type of router task
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -74,6 +83,15 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         }
     }
     
+    
+    /// Method for configuring request according to mentioned body and url paramters
+    ///
+    /// - Parameters:
+    ///   - bodyParameters: Parameters
+    ///   - bodyEncoding: ParameterEncoding
+    ///   - urlParameters: Parameters
+    ///   - request: URLRequest
+    /// - Throws: throws exception
     fileprivate func configureParameters(bodyParameters: Parameters?,
                                          bodyEncoding: ParameterEncoding,
                                          urlParameters: Parameters?,
@@ -86,6 +104,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         }
     }
     
+    //Helper method for adding additional header to the request
     fileprivate func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
         guard let headers = additionalHeaders else { return }
         for (key, value) in headers {

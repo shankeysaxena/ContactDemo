@@ -10,6 +10,7 @@ import Foundation
 
 public typealias HTTPHeaders = [String:String]
 
+//HTTP tasks to be performed
 public enum HTTPTask {
     case request
     

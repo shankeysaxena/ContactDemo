@@ -15,6 +15,7 @@ enum NetworkEnvironment {
     case staging
 }
 
+//MARK:- ContactAPI Enum which will be coupled with each request type
 public enum ContactAPI {
     case contactListing
     case contactDetail(id: Int)
@@ -36,6 +37,9 @@ extension ContactAPI: Equatable {
     }
 }
 
+//MARK:- ContactAPI extension conforming with EndpointType
+//This is done for coupling each request type with specific paramters for
+//unique type
 extension ContactAPI: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
@@ -48,7 +52,6 @@ extension ContactAPI: EndPointType {
         case .updateContact:
             return .put
         }
-        
     }
     
     var task: HTTPTask {

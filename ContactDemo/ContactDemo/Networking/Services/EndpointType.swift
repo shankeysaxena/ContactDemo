@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol for Endpoint to be confirmed
 protocol EndPointType {
     var baseURL: URL { get }
     var path: String { get }

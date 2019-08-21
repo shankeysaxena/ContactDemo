@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 /// Use this image view for setting image asynchronously
-/// It will download the image is not cached.
-
+/// It will download the image if it is not cached.
 public class AsyncImageView: UIImageView {
     
     private let imageCache = NSCache<NSString, UIImage>()

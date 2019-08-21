@@ -18,6 +18,9 @@ final class ContactViewModel {
     
     private var sections: [Section]?
     
+    /// Required Initializer for initializing ContactViewModel
+    ///
+    /// - Parameter contactList: list of contacts which needs ti be displayed
     required init(contactList: [Contact]?) {
         guard let contactList = contactList else {return}
         let groupedDictionary = Dictionary(grouping: contactList) { String($0.firstName?.prefix(1) ?? "No Value")}
@@ -32,7 +35,7 @@ final class ContactViewModel {
     }
 }
 
-//TableView Support
+//MARK:- TableView Support
 extension ContactViewModel {
     
     func sectionIndexTitle() -> [String]? {

@@ -29,11 +29,3 @@ public class Contact: Codable {
         case emailAddress = "email"
     }
 }
-
-//extension Contact: Equatable {
-//    public static func ==(lhs: Contact?, rhs: Contact?) -> Bool {
-//
-//        guard
-//
-//    }
-//}

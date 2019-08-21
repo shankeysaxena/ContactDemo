@@ -56,9 +56,7 @@ class ContactDetailController: UITableViewController {
         }
         configureTableView()
         fetchDetailData()
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+        addTapGesture()
     }
     
     deinit {
@@ -79,11 +77,7 @@ extension ContactDetailController {
 
 //Private Methods
 private extension ContactDetailController {
-    
-    @objc func handleTapGesture() {
-        view.endEditing(true)
-    }
-    
+    //MARK:- View configuring methods
     func configureTableView() {
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
@@ -96,17 +90,15 @@ private extension ContactDetailController {
         doneButton.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: .zero, viewSize: CGSize(width: 0, height: 50))
     }
     
-    @objc func doneButtonTapped() {
+    //MARK:-  Event handler methods
+    func addTapGesture() {
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTapGesture() {
         view.endEditing(true)
-        guard let contactModel = contactModel, let _ = contactModel.firstName, let _ = contactModel.lastName else {
-            self.showAlert("Please enter atleast first and last name to add contact")
-            return
-        }
-        networkManager.addNewContactWith(contactModel: contactModel) { [weak self] responseString in
-            self?.showAlertView(nil, message: responseString, cancelButtonTitle: "OK", handler: { (handler) in
-                self?.navigationController?.popViewController(animated: true)
-            })
-        }
     }
     
     @objc func editButtonClicked() {
@@ -114,9 +106,38 @@ private extension ContactDetailController {
         navigationItem.rightBarButtonItem?.title = (viewModel?.isInEditMode ?? false) ? "Cancel" : "Edit"
     }
     
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
+        if validateInput() == false { return }
+        guard let contactModel = contactModel else { return }
+        let changeAPIType = (contactMode == .contactDetail) ? ContactAPI.updateContact(id: contactModel.profileId ?? 0, contact: contactModel) : ContactAPI.newContact(contact: contactModel)
+        networkManager.addOrUpdateContactWith(type: changeAPIType) { [weak self] (responseString) in
+            self?.showAlertView(nil, message: responseString, cancelButtonTitle: "OK", handler: { (handler) in
+                self?.navigationController?.popViewController(animated: true)
+            })
+        }
+    }
+    //Validating inputs
+    func validateInput() -> Bool{
+        guard let contactModel = contactModel, let _ = contactModel.firstName, let _ = contactModel.lastName else {
+            self.showAlert("Please enter atleast first and last name to add contact")
+            return false
+        }
+        
+        if let contactEmail = contactModel.emailAddress {
+            let isValidEmail = contactEmail.isValidEmail()
+            if isValidEmail == false {
+                self.showAlert("Please enter proper email address to add contact")
+                return false
+            }
+        }
+        return true
+    }
+    
     func fetchDetailData() {
         if contactMode == .newContact {
-            viewModel = ContactDetailViewModel(model: nil, contactViewModeType: .newContact, updationBlock: { [weak self] in
+            contactModel = Contact()
+            viewModel = ContactDetailViewModel(model: contactModel, contactViewModeType: .newContact, updationBlock: { [weak self] in
                 self?.tableView.reloadData()
             })
             viewModel?.editOptionChanged()
@@ -160,6 +181,7 @@ private extension ContactDetailController {
     }
     
     //MARK:- User Interaction button action
+    
     func handleMessageTap() {
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
@@ -201,12 +223,14 @@ private extension ContactDetailController {
     }
 }
 
+//MARK:- MFMailComposeViewControllerDelegate Extension
 extension ContactDetailController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true, completion: nil)
     }
 }
 
+//MARK:- MFMessageComposeViewControllerDelegate Extension
 extension ContactDetailController: MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         dismiss(animated: true, completion: nil)

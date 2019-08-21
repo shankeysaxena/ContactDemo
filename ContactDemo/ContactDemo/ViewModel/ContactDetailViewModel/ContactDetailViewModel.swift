@@ -12,11 +12,14 @@ import UIKit
 final class ContactDetailViewModel {
     
     private(set) var contactModel: Contact?
+    //Handler for updating UI
     private var updateUI: (() -> ())
     var userInteractiveButtonCallback: ((AppConstants.ProfileButtonTags) -> ())?
     private(set) var isInEditMode: Bool = false {
         didSet {
             if contactViewModeType == .newContact { return }
+            //If view is not in edit mode then don't show
+            //first name and last name
             if isInEditMode == false {
                 if self.profileItems.count == 5 {
                     //Both items are removed from 1st index as the position
@@ -26,6 +29,7 @@ final class ContactDetailViewModel {
                     self.updateUI()
                 }
             } else {
+                //Add firstname and last name cell if view is in edit mode
                 let firstNameItem = ProfileFirstNameItem(firstName: contactModel?.firstName)
                 let lastNameItem = ProfileLastNameItem(lastName: contactModel?.lastName)
                 self.profileItems.insert(firstNameItem, at: 1)
@@ -37,6 +41,12 @@ final class ContactDetailViewModel {
     private(set) var contactViewModeType: ContactDetailMode
     private var profileItems = [ProfileViewModelItem]()
     
+    /// Required initializer for initializing view model
+    ///
+    /// - Parameters:
+    ///   - model: Contact Model
+    ///   - contactViewModeType: contactViewModeType
+    ///   - updationBlock: updation handler for handling UI updates
     required init(model: Contact?, contactViewModeType: ContactDetailMode, updationBlock: @escaping (() -> ())){
         self.contactModel = model
         self.contactViewModeType = contactViewModeType
@@ -49,17 +59,22 @@ final class ContactDetailViewModel {
         configureProfileItemsForDetailMode()
     }
     
+    
+    /// Method for changing edit options
     func editOptionChanged() {
         self.isInEditMode = !self.isInEditMode
     }
 }
 
+//MARK:- Private methods
 private extension ContactDetailViewModel {
-    
+    /// Method for configuring model items for detail mode
+    /// NOTE:- This method will only gets called during initialization process
     func configureProfileItemsForDetailMode() {
         let name = (contactModel?.firstName ?? "") + " " + (contactModel?.lastName ?? "")
         let profileNameAndPictureItem = ProfileNameAndPictureItem(name: name, profileImageURL: contactModel?.profilePicUrl, isFavorite: contactModel?.favorite)
         profileItems.append(profileNameAndPictureItem)
+        //If view is in edit mode then add first name and last name items
         if isInEditMode == true {
             let firstNameItem = ProfileFirstNameItem(firstName: contactModel?.firstName)
             let lastNameItem = ProfileLastNameItem(lastName: contactModel?.lastName)
@@ -71,8 +86,8 @@ private extension ContactDetailViewModel {
     }
 }
 
+//MARK:- TableView Datasource support methods
 extension ContactDetailViewModel {
-    
     func numberOfRows() -> Int {
         return profileItems.count
     }
@@ -87,6 +102,8 @@ extension ContactDetailViewModel {
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.contactBasicProfileCellIdentifier, for: indexPath) as? ContactBasicProfileCell {
+                //Initializing cell with handler for handling events change
+                //if there are any, in cells
                 cell.configureCellFor(item: itemAtIndexPath(indexPath), contactMode: contactViewModeType) { [weak self] (isButtonTapped, buttonType) in
                     switch buttonType {
                     case .favouriteButtonTag:
@@ -100,6 +117,8 @@ extension ContactDetailViewModel {
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.contactDetailInfoCellIdentifier, for: indexPath) as? ContactDetailInfoCell {
+                //Initializing cell with handler for handling events change
+                //if there are any, in cells
                 cell.configureCellWith(item: itemAtIndexPath(indexPath), isInEditMode: isInEditMode) { [weak self] (changedValue, itemType) in
                     switch itemType {
                     case .emailAddress:
